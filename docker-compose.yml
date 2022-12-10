@@ -1,0 +1,16 @@
+version: '2.4'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "400:80"
+    volumes:
+      - ./code:/code
+      - ./site.conf:/etc/nginx/conf.d/site.conf
+    links:
+      - php
+  php:
+    image: php:7-fpm
+    volumes:
+      - ./code:/code
+      - ./vendor:/vendor
